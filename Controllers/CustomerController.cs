@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using backend.Dtos.Customer;
 using backend.Services.CustomerService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace backend.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase
@@ -41,6 +43,17 @@ namespace backend.Controllers
         public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> UpdateCustomer(UpdateCustomerDto updatedCustomer)
         {
             var response = await _customerService.UpdateCustomer(updatedCustomer);
+            if (response.Data == null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> Delete(int id)
+        {
+            var response = await _customerService.DeleteCustomer(id);
             if (response.Data == null)
             {
                 return NotFound(response);

@@ -12,5 +12,6 @@ namespace backend.Services.CustomerService
         Task<ServiceResponse<GetCustomerDto>> GetCustomerById(int id);
         Task<ServiceResponse<List<GetCustomerDto>>> AddCustomer(AddCustomerDto newCustomer);
         Task<ServiceResponse<GetCustomerDto>> UpdateCustomer(UpdateCustomerDto updatedCustomer);
+        Task<ServiceResponse<List<GetCustomerDto>>> DeleteCustomer(int id);
     }
 }

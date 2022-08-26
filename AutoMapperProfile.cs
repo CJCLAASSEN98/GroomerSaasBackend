@@ -13,6 +13,7 @@ namespace backend
         {
             CreateMap<Customer, GetCustomerDto>();
             CreateMap<AddCustomerDto, Customer>();
+            CreateMap<UpdateCustomerDto, Customer>();
         }
     }
 }
